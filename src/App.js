@@ -12,8 +12,8 @@ const candyColors = [
 
 const App = () => {
     const [currColorArr, setCurrColorArr] = useState([])
-    const [beingDragged,setBeingDragged] = useState(null)
-    const [beingReplaced,setBeingReplaced] = useState(null)
+    const [beingDragged, setBeingDragged] = useState(null)
+    const [beingReplaced, setBeingReplaced] = useState(null)
 
     const checkForCol3 = () => {
         for (let i = 0; i <= 47; i++) {
@@ -22,6 +22,7 @@ const App = () => {
 
             if (colOf3.every(square => currColorArr[square] === decidedColor)) {
                 colOf3.forEach(square => currColorArr[square] = '')
+                return true
             }
         }
     }
@@ -32,6 +33,7 @@ const App = () => {
 
             if (colOf4.every(square => currColorArr[square] === decidedColor)) {
                 colOf4.forEach(square => currColorArr[square] = '')
+                return true
             }
         }
     }
@@ -44,6 +46,7 @@ const App = () => {
             if (endList.includes(i)) continue
             if (rowOf3.every(square => currColorArr[square] === decidedColor)) {
                 rowOf3.forEach(square => currColorArr[square] = '')
+                return true
             }
         }
     }
@@ -55,6 +58,7 @@ const App = () => {
             if (endList.includes(i)) continue
             if (rowOf4.every(square => currColorArr[square] === decidedColor)) {
                 rowOf4.forEach(square => currColorArr[square] = '')
+                return true
             }
         }
     }
@@ -86,10 +90,37 @@ const App = () => {
     }
 
     const dragEnd = (e) => {
-        const beingReplacedId = beingReplaced.getAttribute('data-id')
-        const beingDraggedId = beingDragged.getAttribute('data-id')
+        const beingReplacedId = parseInt(beingReplaced.getAttribute('data-id'))
+        const beingDraggedId = parseInt(beingDragged.getAttribute('data-id'))
 
-        console.log(beingReplacedId,beingDraggedId)
+        console.log(currColorArr[beingReplacedId], beingDraggedId)
+        currColorArr[beingReplacedId] = beingDragged.style.backgroundColor
+        currColorArr[beingDraggedId] = beingReplaced.style.backgroundColor
+
+        const validMoves = [
+            beingDraggedId - 1,
+            beingDraggedId - width,
+            beingDraggedId + 1,
+            beingDraggedId + width
+        ]
+
+        const validMove = validMoves.includes(beingReplacedId)
+        const col3 = checkForCol3()
+        const col4 = checkForCol4()
+        const row3 = checkForRow3()
+        const row4 = checkForRow4()
+
+        if (beingReplacedId && validMove && (col3 || col4 || row3 || row4)) {
+            console.log('isvalid')
+            setBeingDragged(null)
+            setBeingReplaced(null)
+        } else {
+            currColorArr[beingReplacedId] = beingReplaced.style.backgroundColor
+            currColorArr[beingDraggedId] = beingDragged.style.backgroundColor
+            setCurrColorArr([...currColorArr])
+        }
+
+
     }
 
     const createBoard = () => {
