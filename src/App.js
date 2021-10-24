@@ -111,7 +111,6 @@ const App = () => {
         const row4 = checkForRow4()
 
         if (beingReplacedId && validMove && (col3 || col4 || row3 || row4)) {
-            console.log('isvalid')
             setBeingDragged(null)
             setBeingReplaced(null)
         } else {
