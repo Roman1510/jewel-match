@@ -1,7 +1,7 @@
 const Scores = ({score})=>{
     return (
         <div className="score-board">
-            <h2>{score}</h2>
+            <h2>Your score is: {score}</h2>
         </div>
     )
 }

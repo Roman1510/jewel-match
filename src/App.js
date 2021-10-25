@@ -183,7 +183,7 @@ const App = () => {
 
 
     return (
-        <div className="app" style={{ backgroundImage: `url(${background})` }} >
+        <div className="app" style={{ backgroundImage: `url(${background})`}} >
             <div className="game" >
                 {currColorArr.map((color, index) => (
                     <div className="grid">
