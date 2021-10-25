@@ -65,7 +65,7 @@ const App = () => {
             const endList = [6, 7, 14, 15, 22, 23, 30, 31, 38, 39, 46, 47, 54, 55, 63, 64]
             if (endList.includes(i)) continue
             if (rowOf3.every(square => currColorArr[square] === decidedColor && !isBlank)) {
-                if(alreadyDragged){
+                if (alreadyDragged) {
                     setCurrentScore((score) => score + 3)
                 }
                 rowOf3.forEach(square => currColorArr[square] = blankJewel)
@@ -81,7 +81,7 @@ const App = () => {
             const endList = [5, 6, 7, 13, 14, 15, 21, 22, 23, 29, 30, 31, 37, 38, 39, 45, 46, 47, 53, 54, 55, 62, 63, 64]
             if (endList.includes(i)) continue
             if (rowOf4.every(square => currColorArr[square] === decidedColor && !isBlank)) {
-                if(alreadyDragged){
+                if (alreadyDragged) {
                     setCurrentScore((score) => score + 4)
                 }
                 rowOf4.forEach(square => currColorArr[square] = blankJewel)
@@ -184,7 +184,7 @@ const App = () => {
 
     return (
         <div className="app">
-            <div className="game" >
+            <div className="game">
                 {currColorArr.map((color, index) => (
                     <div className="grid">
                         <img
@@ -211,4 +211,3 @@ const App = () => {
 
 export default App;
 // 1. get rid of 'key' error, get rid of infinite timer of the game
-// 2. Center the whole game
