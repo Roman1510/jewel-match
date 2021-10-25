@@ -7,7 +7,7 @@ import orangeJewel from './images/orange.png'
 import yellowJewel from './images/yellow.png'
 import purpleJewel from './images/purple.png'
 import blankJewel from './images/blank.png'
-
+import background from './images/1624.jpg'
 
 const width = 8
 const jewelColors = [
@@ -183,8 +183,8 @@ const App = () => {
 
 
     return (
-        <div className="app">
-            <div className="game">
+        <div className="app" style={{ backgroundImage: `url(${background})` }} >
+            <div className="game" >
                 {currColorArr.map((color, index) => (
                     <div className="grid">
                         <img
@@ -210,7 +210,5 @@ const App = () => {
 }
 
 export default App;
-// 1. Get rid of repetitiveness
-// 2. Make score count only after it's fully static
-// 3. Make background
-// 4. Center the whole game
+// 1. get rid of 'key' error, get rid of infinite timer of the game
+// 2. Center the whole game
