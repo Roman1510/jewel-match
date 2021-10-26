@@ -115,8 +115,9 @@ const App = () => {
         setBeingReplaced(e.target)
     }
 
-    const dragEnd = () => {
-
+    const dragEnd = (e) => {
+        console.log(e)
+        //"dragend"
         const beingReplacedId = parseInt(beingReplaced.getAttribute('data-id'))
         const beingDraggedId = parseInt(beingDragged.getAttribute('data-id'))
 
@@ -192,11 +193,13 @@ const App = () => {
                             data-id={index}
                             draggable={true}
                             onDragStart={dragStart}
+                            onTouchStart={e=>console.log(e)}
                             onDragOver={(e) => e.preventDefault()}
                             onDragEnter={(e) => e.preventDefault()}
                             onDragLeave={(e) => e.preventDefault()}
                             onDrop={dragDrop}
                             onDragEnd={dragEnd}
+                            onTouchEnd={e=>console.log(e)} //"touchend"
                         />
                     </div>
 
@@ -208,4 +211,5 @@ const App = () => {
 }
 
 export default App;
-// 1. get rid of 'key' error, get rid of infinite timer of the game
+// 1. make the game resizable =>
+// 2. make the game responsive to the devise it's on
