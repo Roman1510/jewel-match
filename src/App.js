@@ -7,7 +7,6 @@ import orangeJewel from './images/orange.png'
 import yellowJewel from './images/yellow.png'
 import purpleJewel from './images/purple.png'
 import blankJewel from './images/blank.png'
-import background from './images/1624.jpg'
 
 const width = 8
 const jewelColors = [
@@ -57,7 +56,6 @@ const App = () => {
     }
 
     const checkForRow3 = () => {
-        console.log(alreadyDragged)
         for (let i = 0; i < 64; i++) {
             const rowOf3 = [i, i + 1, i + 2]
             const decidedColor = currColorArr[i]
@@ -135,8 +133,9 @@ const App = () => {
         const validMove = validMoves.includes(beingReplacedId)
         const col3 = checkForCol3()
         const col4 = checkForCol4()
-        const row3 = checkForRow3()
         const row4 = checkForRow4()
+        const row3 = checkForRow3()
+
 
         if (beingReplacedId && validMove && (col3 || col4 || row3 || row4)) {
             setBeingDragged(null)
@@ -179,16 +178,15 @@ const App = () => {
             setCurrColorArr([...currColorArr])
         }, 100)
         return () => clearInterval(timer)
-    }, [checkForCol4, checkForCol3, checkForRow4, checkForRow3, moveIntoSquareBelow, currColorArr])
+    })
 
 
     return (
         <div className="app">
             <div className="game">
                 {currColorArr.map((color, index) => (
-                    <div className="grid">
+                    <div className="grid" key={index}>
                         <img
-                            key={index}
                             src={color}
                             alt={color}
                             data-id={index}
